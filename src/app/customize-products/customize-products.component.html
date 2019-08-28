@@ -1,0 +1,56 @@
+<div class="container">
+  <h2>Product Form</h2>
+  <form class="form-horizontal" (ngSubmit)="addDetails(model)">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="prouctName">Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="prouctName" placeholder="Product Name" name="name" [(ngModel)]="model.name" #name="ngModel">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="categories">Categories:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="categories" name="categories" [(ngModel)]="model.categories" #categories="ngModel" placeholder="Enter Categories">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="detail">Detail:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="detail" name="detail" [(ngModel)]="model.detail" #detail="ngModel"placeholder="Enter Detail">
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">{{buttonTxt}}</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <h2>Product List</h2>
+  <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Type</th>
+        <th>Detail</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products | async; let i = index">
+        <td>{{product.name}}</td>
+        <td>{{product.categories}}</td>
+        <td>{{product.detail}}</td>
+        <td>
+        	<button type="button" class="btn btn-danger btn-sm" (click)="delProduct(i)">Delete</button>
+        	
+			<button type="button" class="btn btn-warning btn-sm" (click)="editProduct(product,i)">Edit</button>
+		</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
